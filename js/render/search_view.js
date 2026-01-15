@@ -146,6 +146,7 @@ async function loadSearchResults(query="") {
 
             const viewBtn = tr.querySelector(".view-btn");
             const downloadBtn = tr.querySelector(".download-btn");
+            const sendBtn = tr.querySelector(".send-btn");
             viewBtn.addEventListener("click", () => {
                 console.log(`Asset info view button clicked: ${asset.id}`);
                 document.getElementById('viewJsonModalTitle').textContent = `Semantic Model of ${asset.id}`;
@@ -183,6 +184,11 @@ async function loadSearchResults(query="") {
                 }
                 alert(`Response: ${JSON.stringify(resp)}`);
             });
+
+            sendBtn.addEventListener("click", async () => {
+                alert("Not yet implemented")
+            });
+
             tbody.appendChild(tr);
         });
     });

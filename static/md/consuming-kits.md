@@ -10,15 +10,13 @@ The tutorials below demonstrate basic operations of KIT consumers.
 
 ## 1. How to search KITs
 
-In the `KIT GUI` sidebar menu, go to `Search KITs`.
-This page shows all the assets in the dataspace that are 
-1. negotiatable to you (i.e., read access).
-2. comply with the RoX KIT format.
+The search functionality is implemented based on the federated catalog.
+Therefore, the search result is obtained from every user's catalog.
 
-The search functionality is implemented based on the federated catalogue.
-Therefore, the search result is obtained from every user's catalogue.
+Go to the `Search KITs` menu in the sidebar.
+Here, KITs with a contract definition (not just as an asset) are displayed.
 
-You can find KITs with specific values in the metadata using a search query with logical operators.
+Search by a query with logical operators:
 
 - `==`
 - `!=`
@@ -30,21 +28,60 @@ You can find KITs with specific values in the metadata using a search query with
 - `startswith`
 - `endswith`
 
-The expression can be concatenated using `and`.
+Multiple expressions can be concatenated using `and`.
 
-**Examples**:
-- `type == classification`
-- `type == classification` and `bytesize <= 30000000`
+Now, try the query `type == classification`. 
+Next, try the query `type == classification and bytesize <= 30000000`.
 
-You can use the values in the KIT metadata (including the semantic model) for searching.
-When you want to see the metadata of a KIT, look at the table column `Actions`, and click the blue circle button.
+The search engine uses the values in the KIT metadata (including the semantic model).
+
+Each displayed item has the following contents:
+- Icon picture
+- KIT Name column with
+    - KIT Name
+    - Version
+    - Basic or Composite KIT
+    - http type
+    - data or service
+- Semantic model column contains
+    - Semantic model category [Dataset, Service, Hardware, Software]
+    - Detailed category, e.g., `Mobile Robot`
+- Provider ID
+- Description
+- Actions
+    - Blue button = shows metadata
+    - Green button = download
+    - Black button = redirect to another endpoint
 
 ## 2. Downloading KITs to your local machine
 
-You can download a KIT by clicking the button (green circle).
-This will save the KIT in your machine with:
-- File name is the same as `file_name` in the metadata. If not given by the provider, then it uses the `KIT_name` as the file name.
-- The saved location in your machine is the folder `KIT_workspace`. It is located in the dicrectory of `Edge-Connector`. If you are running `Edge-Connector` in a container, set the volume mount on `KIT_workspace` so that your host machine can access the downloaded KITs. 
+The green button in the `Actions` column downloads the KIT.
+
+Let's download a dataset for an example.
+
+Enter the search query `bpn == BPNLNWF14QKMQ9QE`.
+Download the KIT `CIFAR-10 dataset`. 
+This will take some time as the file size is around 160 MB.
+
+*Where is the file saved?*
+- It is saved at the `Edge-Connector` directory, in the folder `KIT-Workspace`.
+- Along with the file, the metadata is also saved in the `metadata.json` file.
+
+*What is the file name?*
+- The field `default_file_name` in the metadata is used for the file name. If not given, the KIT name is used, instead.
+
+*What happens after download?*
+- The provider maybe provided `postprocessing_cmd` in the metadata. In our CIFAR-10 example, we have `tar -xzf CIFAR-10.tar.gz`.
+- Execute this command to process the downloaded KIT file.
+- It allows your system to know how to process the file, as suggested by the provider.
+- In the future, Edge-Connector will give a choice to the users whether to automatically execute the command or not.
+- This feature can also be used for running the downloaded KIT (if runnable).
+
+For running `Edge-Connector` in a container, we suggest to mount the volume `KIT-Workspace` to be shared with the host machine.
+
+Now, you can also download the `Fashion MNIST` dataset or KITs from other providers.
+
+**Important**: Downloading dataset takes much time as they are typically quite big in Gigabytes. Currently, whether the download is being carried is not shown in `KIT GUI`. For this, you need to check the console output of the `Edge-Connector` whether there is no error.
 
 ## 3. (WIP) AI-assisted search
 

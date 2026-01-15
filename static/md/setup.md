@@ -3,6 +3,10 @@
 Edge-Connector requires your user certificate files to interact with other user's connectors in DLR dataspace.
 You can provide the required files to Edge-Connector through the following steps:
 
+**Warning**: `KIT GUI` is developed primarily to demonstrat the KIT concept and help users to get familiar.
+You may encounter many bugs, and most of them can be fixed by refreshing the page. 
+If you have questions or feedback, contact TP4.
+
 ## 1. Create your connector in the DLR dataspace
 If you haven't created a connector in the DLR dataspace, you need to create one. 
 This should be done only once, and you don't need to do it again.

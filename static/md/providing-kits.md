@@ -10,11 +10,11 @@ Open this page as a new tab in the browser while following the step-by-step guid
 
 ## 1. Creating a Basic KIT (CIFAR-10 dataset example)
 
-We will create a Basic KIT with a famous open source dataset called `CIFAR-10` (reference: https://www.cs.toronto.edu/~kriz/cifar.html). First, you need to know the URL for accessing the file. 
-Normally, this URL can be a service endpoint, but in our example it is a file. 
-For CIFAR-10 example, we use the URL https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz.
+We will create a Basic KIT with a famous open source dataset `CIFAR-10` (reference: https://www.cs.toronto.edu/~kriz/cifar.html). 
+For this, we use the URL https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz.
+Accessing this URL will download the compressed data file.
 
-In the `KIT GUI` left panel menu, go to `Provide` -> `Basic KIT`. 
+In the `KIT GUI` left panel menu, go to `Provide > Basic KIT`. 
 
 1. In the `General Information` box, you enter the general description. For example:
     - KIT Name = CIFAR-10 Dataset
@@ -29,7 +29,8 @@ In the `KIT GUI` left panel menu, go to `Provide` -> `Basic KIT`.
     - Select **HTTP** 
     - Choose **GET**
     - Enter the URL `https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz`.
-    - Leave the `Request content-type` emtpy since it is a GET request
+    - Leave the `Request Headers` empty. If you need a token to access, you can add `Authorization: Bearer <token>`.
+    - Leave the `Content-Type` as *None* because it is a GET request.
     - Also leave empty in the `Request body JSON schema`. The request body schema tell consumers what inputs must be provided when using your KIT (e.g., if it is a service endpoint).
 3. In the `Semantic Model Description` box, 
     - Select `Dataset`, and click `Generate Schema`.
@@ -62,15 +63,14 @@ In the `KIT GUI` left panel menu, go to `Provide` -> `Basic KIT`.
 ```
 
 4. In the `Thumbnail Image` box, you can select an image in your drive. The image is encoded into text. This step is optional. The generated text is added in the metadata and used as an icon of your KIT.  
-5. In the `Submission` box, select *Data*.
+5. In the `Submission` box, 
+  - select *Data* because it is data.
+  - Give the file name as `CIFAR-10.tar.gz`.
+  - Post processing tells the consumer how to process the downloaded KIT. In our case, write down `tar -xzf CIFAR-10.tar.gz`.
 6. Click the submit button.
 
-If the KIT is created successfully, you can start managing the KIT, which is explained in the next section below.
-
----
-> **_NOTE:_**: You can make anything into a Basic KIT as long as there is a single URL for accessing. For example,
-- Docker Conatiner Files: The URL to a dockerfile or docker-compose file can be a KIT,  
----
+After the successful creation, you should be able to see the KIT in `Management > My KITs (Assets)` in the sidebar menu.
+This menu is explained in the next section.
 
 ## 2. Management: Inspect, define contracts, and delete your KITs
 

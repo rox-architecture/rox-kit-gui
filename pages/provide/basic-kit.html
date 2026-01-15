@@ -155,7 +155,7 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label for="httpRequestHeader" class="col-sm-12 col-form-label"> Request Header </label>
+                    <label for="httpRequestHeader" class="col-sm-12 col-form-label"> Request Headers </label>
                     <div class="col-sm-12">
                       <textarea
                         id="httpRequestHeader"
@@ -169,7 +169,7 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label for="httpRequestType" class="col-sm-5 col-form-label">Request content-type*</label>
+                    <label for="httpRequestType" class="col-sm-5 col-form-label">Request Header: Content-Type*</label>
                     <div class="col-sm-7">
                       <select id="httpRequestType" class="form-select" name="httpRequestType" >
                       <option value="none">None (no request body)</option>
@@ -342,15 +342,15 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="filename" class="col-sm-3 col-form-label">Default File Name</label>
+                  <label for="fileName" class="col-sm-3 col-form-label">Default File Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="filename"/>
+                      <input type="text" class="form-control" id="fileName"/>
                     </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="postProcessingCmd" class="col-sm-12 col-form-label">Post Processing</label>
+                  <label for="postProcessing" class="col-sm-12 col-form-label">Post Processing</label>
                   <div class="col-sm-12">
-                    <textarea class="form-control" rows="4" id="postProcessingCmd" placeholder="This command will be executed immediately after saving the Basic KIT in the memory. Use it for, e.g., unzipping files. Provide the default file name so that this command can assume the file name"></textarea>
+                    <textarea class="form-control" rows="4" id="postProcessing" placeholder="This command will be executed immediately after saving the Basic KIT in the memory. Use it for, e.g., unzipping files. Provide the default file name so that this command can assume the file name"></textarea>
                   </div>
                 </div>
                 <div class="card-footer">
@@ -579,7 +579,7 @@ const treeData = [
 <script>
   document.getElementById('guiForm').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent form from submitting normally
-    
+
     const semantic_model1 = JSON.parse(document.getElementById('semanticSchema').value || "{}");
     const semantic_model2 = JSON.parse(document.getElementById('semanticSchema2').value || "{}");
     const semantic_model = { ...semantic_model1, ...semantic_model2 };
@@ -604,7 +604,8 @@ const treeData = [
 
       // asset representative image
       icon: document.getElementById('imageEncoded').value || null,
-      
+      default_file_name: document.getElementById('fileName').value || null,
+      postprocessing_cmd: document.getElementById('postProcessing').value || null
     };
 
     const selectedAssetType = document.querySelector('input[name="gridRadiosAsset"]:checked')?.value;
@@ -612,11 +613,15 @@ const treeData = [
     let STATUS_URL;
     if (selectedAssetType === 'httpOption') {
       STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/kit/basic/create/http`;
+
+      const request_headers = document.getElementById('httpRequestHeader').value;  // debugging purpose
+      console.log(request_headers)
+
       Object.assign(data, {
         url: document.getElementById('httpUrl').value,
         asset_type: "http",
         method: document.getElementById('httpMethod').value,
-        
+        header: document.getElementById('httpRequestHeader').value,
         request_type: document.getElementById('httpRequestType').value,
         request_body: document.getElementById('httpRequestBody').value ? JSON.parse(document.getElementById('httpRequestBody').value) : null
       });
