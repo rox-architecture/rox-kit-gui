@@ -55,5 +55,5 @@ Below are currently work-in-progress and will be provied soon:
 
 ### Additional Documents
 
-- RoX KIT Concept Document: https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html
+- RoX KIT Concept Document: ~https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html~ (update required)
 
