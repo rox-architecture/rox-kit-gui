@@ -1,0 +1,22 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "specialTool",
+        "supplyVoltage":"xsd:decimal",
+        "interfaceProtocol":"xsd:text",
+        "manufacturer":"xsd:text",
+        "specialToolType":"enum[ToolChangers, MultiTools, HybridEndEffectors]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "toolWeight":"xsd:decimal",
+        "toolMaterial":"xsd:text",
+        "interfaceStandard":"xsd:text",
+        "changeoverTime":"xsd:decimal",
+        "numberOfPorts":"xsd:integer"
+    }
+
+}

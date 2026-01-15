@@ -1,0 +1,16 @@
+{
+
+    "mandatory":{
+        "category": "software",
+        "model": "robotOperationSoftware",
+        "robotOperationSystemType":"enum[ROS1, ROS2, Orcos, vendorSpecificMiddleware]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "softwareAssetType":"skos:concept",
+        "supportedApis":"List[xsd:anyUri]",
+        "supportedHardwareDrivers":"List[xsd:text]",
+        "osDependencies":"List[xsd:text]"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "inertialSensor",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "manufacturer":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "measurementRange":"xsd:decimal",
+        "measurementAccuracy":"xsd:decimal",
+        "samplingRate":"xsd:decimal",
+        "fieldOfView":"xsd:decimal",
+        "gyroRange":"schema:quantitativeValue",
+        "accelRange":"schema:quantitativeValue"
+    }
+}

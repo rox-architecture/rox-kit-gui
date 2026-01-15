@@ -1,0 +1,25 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "mobile_robot",
+        "payload":"xsd:decimal",
+        "maxVelocity":"xsd:decimal",
+        "DOF":"xsd:integer",
+        "operatingVoltage":"xsd:decimal",
+        "interface":"xsd:text",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "manufacturer":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "reach":"xsd:decimal",
+        "accuracy":"xsd:decimal",
+        "minVelocity":"xsd:decimal",
+        "maxSpeed":"xsd:decimal",
+        "batteryCapacity":"xsd:decimal",
+        "operatingTime":"xsd:duration",
+        "environmentType":"enum[indoor, outdoor, hybrid]"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "stationary_parallel_robot",
+        "payload":"xsd:decimal",
+        "maxVelocity":"xsd:decimal",
+        "DOF":"xsd:integer",
+        "operatingVoltage":"xsd:decimal",
+        "interface":"xsd:text",
+        "mounting":"xsd:text",
+        "positionAccuracy":"xsd:decimal",
+        "repeatability":"xsd:decimal",
+        "isCobot":"xsd:boolean",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "manufacturer":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "reach":"xsd:decimal",
+        "accuracy":"xsd:decimal",
+        "minVelocity":"xsd:decimal",
+        "workspaceVolume":"xsd:decimal",
+        "pedestal":"xsd:boolean",
+        "kinematicModel":"xsd:text",
+        "platformSize":"xsd:decimal",
+        "stiffness":"xsd:decimal",
+        "pickRateMax":"xsd:decimal",
+        "workspaceShape":"skos:concept"
+    }
+}

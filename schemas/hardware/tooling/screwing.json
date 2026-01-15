@@ -1,0 +1,22 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "screwingAssemblyTool",
+        "supplyVoltage":"xsd:decimal",
+        "interfaceProtocol":"xsd:text",
+        "manufacturer":"xsd:text",
+        "screwingAssemblyToolType":"enum[Screwdrivers, RivetingTools, AdhesiveDispensingSystem]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "toolWeight":"xsd:decimal",
+        "toolMaterial":"xsd:text",
+        "torqueRange":"xsd:decimal",
+        "rotationSpeed":"xsd:decimal",
+        "dispensingRate":"xsd:decimal"
+    }
+
+}

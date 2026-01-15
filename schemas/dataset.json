@@ -1,0 +1,19 @@
+{
+    "mandatory":{
+        "category": "dataset",
+        "model": "dataset",
+        "informationSensitivityClassification":"skos:concept",
+        "type":"skos:concept",
+        "dataFormat":"xsd:text",
+        "isDataproduct":"xsd:boolean",
+        "byteSize":"xsd:integer"
+    },
+    "optional":{
+        "dataTypeSchema":"xsd:anyUri",
+        "checksum":"xsd:hexBinary",
+        "endpointDescription":"xsd:text",
+        "endpointURL":"xsd:anyUri",
+        "protocol":"xsd:text",
+        "dataProductOwner":"xsd:text"
+    }
+}

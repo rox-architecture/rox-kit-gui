@@ -1,0 +1,23 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "weldingTool",
+        "supplyVoltage":"xsd:decimal",
+        "interfaceProtocol":"xsd:text",
+        "manufacturer":"xsd:text",
+        "weldingType":"enum[MAG, MIG, SpotWeldingGuns, LaserWelding]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "toolWeight":"xsd:decimal",
+        "toolMaterial":"xsd:text",
+        "weldingCurrent":"xsd:decimal",
+        "voltage":"xsd:decimal",
+        "wireFeedRate":"xsd:decimal",
+        "electrodeLife":"xsd:decimal"
+    }
+
+}

@@ -1,0 +1,16 @@
+{
+
+    "mandatory":{
+        "category": "software",
+        "model": "simulationDigitalTwinSoftware",
+        "simulationDigitalTwinSoftwareType":"enum[physicsEngine, cadKinematics, digitalTwinConnectors]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "softwareAssetType":"skos:concept",
+        "physicsFidelity":"xsd:text",
+        "supportedRobotModels":"List[xsd:text]",
+        "fileFormatCompatibility":"List[xsd:text]"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "robotController",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "manufacturer":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "cpuArchitecture":"xsd:text",
+        "processorClock":"xsd:decimal",
+        "realTimeSupport":"xsd:boolean",
+        "communicationInterfaces":"skos:concept",
+        "powerSupply":"xsd:text",
+        "maxAxesSupported":"xsd:integer",
+        "driveInterfaces":"skos:concept"
+    }
+}

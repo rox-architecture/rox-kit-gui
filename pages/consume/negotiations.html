@@ -1,0 +1,71 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Negotiations</h3>
+          <p>Show all the negotiated KITs (Currently WIP)</p>
+        </div>
+      </div>
+      <!--end::Row-->
+    </div>
+    <!--end::Container-->
+  </div>
+  
+<!--end::App Content Header-->
+<!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">  
+      <div class="card mb-4">
+        <div class="card-body table-responsive p-0">
+          <table class="table table-striped align-middle">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 100px;">Asset ID</th>
+                <th class="text-center" style="width: 250px;">Negotiation ID</th>
+                <th class="text-center" style="width: 90px;">Provider ID</th>
+                <th class="text-center" style="width: 100px;">Created Time</th>
+                <th class="text-center" style="width: 100px;">Actions</th>
+              </tr>
+            </thead>
+  
+            <tbody id="negotiationTable"> </tbody>
+  
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<!-- Modal asset detail showing -->
+<div class="modal fade" id="viewJsonModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewJsonModalTitle">
+                Asset JSON
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <textarea id="jsonViewer"
+                class="form-control"
+                style="height: 70vh; font-family: monospace; white-space: pre; overflow: auto;">
+                </textarea>
+            </div>
+
+            <div class="modal-footer">
+                <button id="editJsonBtn" class="btn btn-warning">Edit</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+  

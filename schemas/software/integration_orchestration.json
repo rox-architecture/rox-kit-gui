@@ -1,0 +1,15 @@
+{
+
+    "mandatory":{
+        "category": "software",
+        "model": "integrationOrchestration",
+        "integrationOrchestrationType":"enum[workflowOrchestration, dataIntegrationMiddleware, mesErpConnector]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "softwareAssetType":"skos:concept",
+        "supportedProtocols":"List[xsd:text]",
+        "deploymentVariants":"List[xsd:text]"
+    }
+}

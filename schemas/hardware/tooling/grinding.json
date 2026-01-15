@@ -1,0 +1,22 @@
+{
+    "mandatory":{
+        "category": "hardware",
+        "model": "grindingPolishingFinishingTool",
+        "supplyVoltage":"xsd:decimal",
+        "interfaceProtocol":"xsd:text",
+        "manufacturer":"xsd:text",
+        "grindingPolishingFinishingToolType":"enum[Grinders, Polishers, Brushes]",
+        "aasSubmodel":"https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json"
+    },
+    "optional":{
+        "modelParameters":"schema:quantitativeValue",
+        "framework":"xsd:text",
+        "hardwareAssetType":"skos:concept",
+        "toolWeight":"xsd:decimal",
+        "toolMaterial":"xsd:text",
+        "rotationSpeed":"xsd:decimal",
+        "abrasiveForce":"xsd:decimal",
+        "toolDiameter":"xsd:decimal",
+        "wearRate":"xsd:decimal"
+    }
+}

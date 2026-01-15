@@ -1,0 +1,136 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+  <!--begin::Container-->
+  <div class="container-fluid">
+    <!--begin::Row-->
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="mb-0">Register Certificates to Edge Connector </h3>
+      </div>
+    </div>
+    <!--end::Row-->
+  </div>
+  <!--end::Container-->
+</div>
+
+<!--begin::App Content-->
+<div class="app-content">
+  <!--begin::Container-->
+  <div class="container-fluid">
+    <!--begin::Row-->
+    <!--begin::Row-->
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="callout callout-info">
+          Edge Connector needs your DLR dataspace certificate files to access the dataspace API endpoints.
+          Obtain the certificates from 
+          <a
+            href="https://vision-x-dataspace.base-x-ecosystem.org/#/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="callout-link"
+          >
+            DLR Dataspace
+          </a>
+        </div>
+      </div>
+      <!--end::Col-->
+      <div class="col-12">
+          <div class="card card-primary card-outline mb-4">
+            <div class="card-header">
+              <div class="card-title">Upload DLR dataspace certificates to Edge Connector</div>
+            </div>
+        
+            <form class="needs-validation" id="certForm" method="post" enctype="multipart/form-data" novalidate>
+              <div class="card-body">
+
+                <div class="mb-3">
+                  <label for="connectorName" class="form-label">Connector Name</label>
+                  <input type="text" class="form-control" id="connectorName" name="connectorName" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="file1" class="form-label">Certificate File (.crt)</label>
+                  <input type="file" class="form-control" id="file1" name="file1" required>
+                </div>
+            
+                <div class="mb-3">
+                  <label for="file2" class="form-label">Certificate File (.key)</label>
+                  <input type="file" class="form-control" id="file2" name="file2" required>
+                </div>
+              </div>
+            
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("certForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = document.getElementById("certForm");
+    const name = document.getElementById("connectorName")
+    const connectorName = name.value.trim();
+    const file1 = document.getElementById("file1").files[0];
+    const file2 = document.getElementById("file2").files[0];
+
+    // Check both files exist
+    if (!file1 || !file2 || !connectorName) {
+      alert("Incomplete data provided");
+      return;
+    }
+
+    // Validate file extensions
+    if (!file1.name.endsWith(".crt")) {
+      alert("The first file must be a .crt certificate file.");
+      return;
+    }
+
+    if (!file2.name.endsWith(".key")) {
+      alert("The second file must be a .key private key file.");
+      return;
+    }
+
+    // Prepare for backend request
+    const formData = new FormData();
+    formData.append("conn_name", connectorName);
+    formData.append("tls_crt", file1);
+    formData.append("tls_key", file2);
+
+    const submitButton = e.target.querySelector("button[type='submit']");
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    try {
+      const response = await fetch(`${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/register`, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+
+      const data = await response.json(); // assuming your FastAPI returns JSON
+      alert("Success: " + (data.message || "Certificates registered successfully!"));
+      
+      // Optionally, reset the form
+      e.target.reset();
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error submitting form: " + error.message);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit";
+    }
+
+  });
+</script>
+  

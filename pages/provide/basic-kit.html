@@ -1,0 +1,660 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+  <!--begin::Container-->
+  <div class="container-fluid">
+    <!--begin::Row-->
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="mb-0">Provide / Basic KIT</h3>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <button id="toggleInputBtn" type="butoon" class="btn btn-primary">Toggle Input: Form &#8596; JSON</button>
+      </div>
+    </div>
+    <!--end::Row-->
+  </div>
+  <!--end::Container-->
+</div>
+
+<!--begin::App Content-->
+<div class="app-content">
+  <!--begin::Container-->
+  <div class="container-fluid">
+    <!-- Form Version -->
+    <div id="formContainer">
+      <form id="guiForm">
+        <div class="row g-4">
+          <div class="col-md-6">
+
+            <!--begin::General Information Card-->
+            <div class="card card-success card-outline mb-4">
+              <!--begin::Header-->
+              <div class="card-header">
+                <div class="card-title">General Information</div>
+              </div>
+              <!--begin::Body-->
+              <div class="card-body">
+                <div class="row mb-3">
+                  <label for="kitName" class="col-sm-3 col-form-label">KIT Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="kitName"/>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="version" class="col-sm-3 col-form-label">Version*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="version"/>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="tag" class="col-sm-3 col-form-label">Tag (keyword)</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tag" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="description" class="col-sm-3 col-form-label">Short Description*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="description" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="businessValue" class="col-sm-3 col-form-label">Business Value</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="businessValue" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="vision" class="col-sm-3 col-form-label">Vision / Mission</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="vision" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="license" class="col-sm-3 col-form-label">License</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="license" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="contact" class="col-sm-3 col-form-label">Contact Point</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="contact" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--begin::Asset Location Information Card-->
+            <div class="card card-info card-outline mb-4">
+              <!--begin::Header-->
+              <div class="card-header">
+                <div class="card-title">Asset Location</div>
+              </div>
+              <!--begin::Body-->
+              <div class="card-body">
+                <fieldset class="row mb-3">
+                  <legend class="col-form-label col-sm-3 pt-0">Location Type</legend>
+                  <div class="col-sm-9">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gridRadiosAsset"
+                        id="httpAssetType"
+                        value="httpOption"
+                        checked
+                      />
+                      <label class="form-check-label" for="httpAssetType"> HTTP </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gridRadiosAsset"
+                        id="amazonAssetType"
+                        value="amazonOption"
+                      />
+                      <label class="form-check-label" for="amazonAssetType"> Amazon S3 Bucket (MinIO) </label>
+                    </div>
+                    <div class="form-check disabled">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gridRadiosAsset"
+                        id="azureAssetType"
+                        value="azureOption"
+                        disabled
+                      />
+                      <label class="form-check-label" for="azureAssetType">
+                        Azure Bucket
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- HTTP Fields -->
+                <div id="httpFields">
+                  <div class="row mb-3">
+                    <label class="form-label">URL*</label>
+                    <div class="input-group">
+                      <select id="httpMethod" class="form-select" style="max-width: 120px;" >
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="DELETE">DELETE</option>
+                      </select>
+                      <input
+                        id="httpUrl"
+                        type="url"
+                        class="form-control"
+                        placeholder="https://api.example.com/resource"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="httpRequestHeader" class="col-sm-12 col-form-label"> Request Header </label>
+                    <div class="col-sm-12">
+                      <textarea
+                        id="httpRequestHeader"
+                        name="httpRequestBody"
+                        class="form-control"
+                        rows="1"
+                        style="width: 100%; resize: vertical;"
+                        placeholder='key:value, key:value, ...'
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="httpRequestType" class="col-sm-5 col-form-label">Request content-type*</label>
+                    <div class="col-sm-7">
+                      <select id="httpRequestType" class="form-select" name="httpRequestType" >
+                      <option value="none">None (no request body)</option>
+                      <option value="application/json">JSON (application/json)</option>
+                      <option value="multipart/form-data">File upload (multipart/form-data)</option>
+                      <option value="application/octet-stream">Binary / Raw Data (application/octet-stream) </option>
+                    </select>
+                    </div>
+                  </div>
+                
+                  <div class="row mb-3">
+                    <label for="httpRequestBody" class="col-sm-12 col-form-label"> Request body JSON schema </label>
+                    <div class="col-sm-12">
+                      <textarea
+                        id="httpRequestBody"
+                        name="httpRequestBody"
+                        class="form-control"
+                        rows="6"
+                        style="width: 100%; resize: vertical;"
+                        placeholder='If no response JSON schema, leave here empty'
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3">
+                    <label for="httpResponseType" class="col-sm-5 col-form-label">Response content-type*</label>
+                    <div class="col-sm-7">
+                      <select id="httpResponseType" class="form-select" name="httpResponseType" >
+                        <option value="none">None (no response body)</option>
+                        <option value="application/json">JSON (application/json)</option>
+                        <option value="text/plain">Plain Text (text/plain)</option>
+                        <option value="application/pdf">PDF File (application/pdf)</option>
+                        <option value="application/octet-stream">Binary / Raw Data (application/octet-stream)</option>
+                    </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="httpResponseBody" class="col-sm-12 col-form-label"> Response body JSON schema </label>
+                    <div class="col-sm-12">
+                      <textarea
+                        id="httpResponseBody"
+                        name="httpResponseBody"
+                        class="form-control"
+                        rows="6"
+                        style="width: 100%; resize: vertical;"
+                        placeholder='If no response JSON schema, leave here empty'
+                      ></textarea>
+                    </div>
+                  </div> -->
+                </div>
+
+                <!-- Amazon S3 Fields (hidden for now) -->
+                <div id="s3Fields" style="display: none;">
+                  
+                  <div class="row mb-3">
+                    <label for="bucketURL" class="col-sm-3 col-form-label">Storage URL*</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="bucketURL"/>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="bucketName" class="col-sm-3 col-form-label">Bucket name*</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="bucketName"/>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="bucketRegion" class="col-sm-3 col-form-label">Storage region*</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="bucketRegion" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="objectPath" class="col-sm-12 col-form-label">Object path (relative path based on the bucket as the root)*</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="objectPath" />
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="userName" class="form-label">Storage username</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="userName"
+                        name="userName"
+                        
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="userPassword" class="form-label">Storage user password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="userPassword"
+                        name="userPassword"
+                        
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            
+            <div class="card card-primary card-outline mb-4">
+              <div class="card-header">
+                <div class="card-title">Semantic Model Description</div>
+              </div>
+              <div class="card-body">
+                <div id="assetTree"></div>
+            
+                <!-- hidden input to submit selected leaf -->
+                <input type="hidden" name="asset_type" id="asset_type">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <button id="generateSchema" type="button" class="btn btn-primary w-100">Generate Schema</button>
+                  </div>
+                  <div class="col-md-6">
+                    <button id="generateSchemaRODEOS" type="button" class="btn btn-secondary w-100">AI Generated Schema (RODEOS)</button>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <p>Mandatory fields:</p>
+                  <textarea id="semanticSchema" class="form-control" rows="4" placeholder="Generated schema will appear here..."></textarea>
+                </div>
+                <div class="row mb-3">
+                  <p>Optional fields:</p>
+                  <textarea id="semanticSchema2" class="form-control" rows="4" placeholder="Generated schema will appear here..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-secondary card-outline mb-4">
+              <div class="card-header">
+                <div class="card-title mb-0">Thumbnail Image (Optional)</div>
+              </div>
+              <div class="card-body">
+                <!-- Button and file input -->
+                <button id="uploadBtn" type="button" class="btn btn-sm btn-secondary mb-2">Select Picture</button>
+                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" style="display: none;" />
+            
+                <!-- Textarea for Base64 -->
+                <textarea id="imageEncoded" class="form-control" rows="4" placeholder="Image encoded into text will appear here..." readonly></textarea>
+              </div>
+            </div>
+
+            <div class="card card-warning card-outline mb-4">
+              <div class="card-header">
+                <div class="card-title">Submission</div>
+              </div>
+              <div class="card-body">
+                <!-- Radio options inline -->
+                <div class="mb-3">
+                  <label class="form-label me-3">Select Type:</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="submissionType" id="typeData" value="data" checked>
+                    <label class="form-check-label" for="typeData">Data</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="submissionType" id="typeService" value="service">
+                    <label class="form-check-label" for="typeService">Service</label>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="filename" class="col-sm-3 col-form-label">Default File Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="filename"/>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="postProcessingCmd" class="col-sm-12 col-form-label">Post Processing</label>
+                  <div class="col-sm-12">
+                    <textarea class="form-control" rows="4" id="postProcessingCmd" placeholder="This command will be executed immediately after saving the Basic KIT in the memory. Use it for, e.g., unzipping files. Provide the default file name so that this command can assume the file name"></textarea>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button id="submit1" type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- JSON Version -->
+    <div id="jsonContainer" style="display: none;">
+      <textarea class="form-control" rows="8" placeholder="Paste JSON here..."></textarea>
+      <div class="card-footer">
+        <button id="submit2" type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  <!--end::Col-->
+  </div>
+</div>
+
+<!-- Toggle button for switching between Form and raw JSON -->
+<script>
+  const toggleBtn = document.getElementById('toggleInputBtn');
+  const formContainer = document.getElementById('formContainer');
+  const jsonContainer = document.getElementById('jsonContainer');
+
+  toggleBtn.addEventListener('click', () => {
+    // Toggle visibility
+    if (formContainer.style.display === 'none') {
+      formContainer.style.display = 'block';
+      jsonContainer.style.display = 'none';
+    } else {
+      formContainer.style.display = 'none';
+      jsonContainer.style.display = 'block';
+    }
+  });
+</script>
+
+<!-- Image conversion into text (Base64) -->
+<script>
+  const uploadBtn = document.getElementById('uploadBtn');
+  const fileInput = document.getElementById('fileInput');
+  const imageText = document.getElementById('imageEncoded');
+
+  uploadBtn.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        // Create a canvas to resize the image
+        const canvas = document.createElement('canvas');
+        canvas.width = 48;
+        canvas.height = 48;
+        const ctx = canvas.getContext('2d');
+
+        // Draw the resized image onto canvas
+        ctx.drawImage(img, 0, 0, 48, 48);
+
+        // Convert the canvas to Base64 text
+        const base64 = canvas.toDataURL(file.type); // e.g., data:image/png;base64,....
+
+        // Display the Base64 text in the textarea
+        imageText.value = base64;
+      }
+      img.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  });
+</script>
+
+<script>
+const treeData = [
+  {
+    text: "RoX Semantic Models",
+    state: { opened: true },
+    children: [
+      {
+        text: "Dataset",
+        id: "dataset",
+        icon: "bi bi-database"
+      },
+      {
+        text: "Service",
+        id: "service",
+        icon: "bi bi-globe"
+      },
+      {
+        text: "Hardware",
+        children: [
+          { 
+            text: "Robot", 
+            children:[
+              { text: "Mobile robot", id: "hardware/robot/mobile_robot", icon: "bi bi-robot" },
+              { text: "Stationary Serial robot", id: "hardware/robot/stationary_serial_robot", icon: "bi bi-robot" },
+              { text: "Stationary Parallel robot", id: "hardware/robot/stationary_parallel_robot", icon: "bi bi-robot" }
+            ]
+          },
+          { 
+            text: "Tooling", 
+            children:[
+              { text: "Welding", id: "hardware/tooling/welding", icon: "bi bi-tools" },
+              { text: "Gripper", id: "hardware/tooling/gripper", icon: "bi bi-tools" },
+              { text: "Cutting separation", id: "hardware/tooling/cutting", icon: "bi bi-tools" },
+              { text: "Screwing assembly", id: "hardware/tooling/screwing", icon: "bi bi-tools" },
+              { text: "Griding Polishing", id: "hardware/tooling/grinding", icon: "bi bi-tools" },
+              { text: "Dispensing additive", id: "hardware/tooling/dispensing", icon: "bi bi-tools" },
+              { text: "Measuring inspection", id: "hardware/tooling/measuring", icon: "bi bi-tools" },
+              { text: "Special", id: "hardware/tooling/special", icon: "bi bi-tools" }
+            ]
+          },
+          { 
+            text: "Controller", 
+            children:[
+              { text: "Robot controller", id: "hardware/controller/robot_controller", icon: "bi bi-gear-wide-connected" },
+              { text: "PLC", id: "hardware/controller/plc", icon: "bi bi-gear-wide-connected" },
+              { text: "IPC", id: "hardware/controller/ipc", icon: "bi bi-gear-wide-connected" }
+            ]
+          },
+          { 
+            text: "Sensor", 
+            children:[
+              { text: "Vision", id: "hardware/sensor/vision", icon: "bi bi-speedometer" },
+              { text: "Lidar", id: "hardware/sensor/lidar", icon: "bi bi-speedometer" },
+              { text: "Force torque", id: "hardware/sensor/force", icon: "bi bi-speedometer" },
+              { text: "Tactile proximity", id: "hardware/sensor/tactile", icon: "bi bi-speedometer" },
+              { text: "Inertial", id: "hardware/sensor/inertial", icon: "bi bi-speedometer" },
+              { text: "Encoder", id: "hardware/sensor/encoder", icon: "bi bi-speedometer" }
+            ]
+          }
+        ]
+      },
+      {
+        text: "Software",
+        children: [
+          { text: "Robot operation", id: "software/robot_operation", icon: "bi bi-code-slash" },
+          { text: "Motion control", id: "software/motion_control", icon: "bi bi-code-slash" },
+          { text: "Perception vision", id: "software/perception_vision", icon: "bi bi-code-slash" },
+          { text: "Simulation digital twin", id: "software/simulation", icon: "bi bi-code-slash" },
+          { text: "AI analysis", id: "software/ai_analysis", icon: "bi bi-code-slash" },
+          { text: "Integration orchestration", id: "software/integration_orchestration", icon: "bi bi-code-slash" }
+        ]
+      }
+    ]
+  }
+];
+</script>
+
+<script>
+  $('#assetTree').jstree({
+    core: {
+      data: treeData,
+      multiple: false
+    },
+    plugins: ["wholerow"]
+  });
+</script>
+
+<script>
+  $('#assetTree').on('select_node.jstree', function (e, data) {
+    if (data.node.children.length > 0) {
+      // Not a leaf → deselect
+      $('#assetTree').jstree(true).deselect_node(data.node);
+      return;
+    }
+  
+    // Leaf selected
+    const selectedValue = data.node.id;
+    document.getElementById('asset_type').value = selectedValue;
+  });
+</script>
+
+
+<!-- Schema generation button behaviour -->
+<script>
+  document.getElementById("generateSchema").addEventListener("click", async () => {
+    const assetType = document.getElementById("asset_type").value;
+    const textarea = document.getElementById("semanticSchema");
+    const textarea2 = document.getElementById("semanticSchema2");
+
+    if (!assetType) {
+      alert("Please select a semantic model from the tree first.");
+      return;
+    }
+
+    // Build path directly from tree id
+    // Example: id === "robot/mobile"
+    // → ./schemas/robot/mobile.json
+    const schemaPath = `./schemas/${assetType}.json`;
+
+    try {
+      textarea.value = "Loading schema...";
+
+      const response = await fetch(schemaPath);
+      if (!response.ok) {
+        throw new Error(`Schema not found at ${schemaPath}`);
+      }
+
+      const schema = await response.json();
+      const count1 = Object.keys(schema.mandatory).length;
+      const count2 = Object.keys(schema.optional).length;
+      // Pretty-print JSON into textarea
+      textarea.value = JSON.stringify(schema.mandatory, null, 2);
+      textarea2.value = JSON.stringify(schema.optional, null, 2);
+      document.getElementById("semanticSchema").rows = count1 + 2;
+      document.getElementById("semanticSchema2").rows = count2 + 2;
+
+    } catch (error) {
+      console.error(error);
+      textarea.value = "";
+      alert("Failed to load semantic schema.");
+    }
+  });
+</script>
+
+
+<!-- GUI Form submission handling -->
+<script>
+  document.getElementById('guiForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent form from submitting normally
+    
+    const semantic_model1 = JSON.parse(document.getElementById('semanticSchema').value || "{}");
+    const semantic_model2 = JSON.parse(document.getElementById('semanticSchema2').value || "{}");
+    const semantic_model = { ...semantic_model1, ...semantic_model2 };
+    const selectedOfferType = document.querySelector('input[name="submissionType"]:checked').value;
+
+    const data = {
+      // General Information
+      kit_name: document.getElementById('kitName').value,
+      kit_type: "basic",
+      name: document.getElementById('kitName').value,
+      version: document.getElementById('version').value,
+      description: document.getElementById('description').value,
+      tag: document.getElementById('tag').value || null,
+      business: document.getElementById('businessValue').value || null,
+      vision: document.getElementById('vision').value || null,
+      license: document.getElementById('license').value || null,
+      contact: document.getElementById('contact').value || null,
+      offerType: selectedOfferType,
+    
+      // Semantic Model
+      semantic_model: semantic_model,
+
+      // asset representative image
+      icon: document.getElementById('imageEncoded').value || null,
+      
+    };
+
+    const selectedAssetType = document.querySelector('input[name="gridRadiosAsset"]:checked')?.value;
+
+    let STATUS_URL;
+    if (selectedAssetType === 'httpOption') {
+      STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/kit/basic/create/http`;
+      Object.assign(data, {
+        url: document.getElementById('httpUrl').value,
+        asset_type: "http",
+        method: document.getElementById('httpMethod').value,
+        
+        request_type: document.getElementById('httpRequestType').value,
+        request_body: document.getElementById('httpRequestBody').value ? JSON.parse(document.getElementById('httpRequestBody').value) : null
+      });
+    } 
+    else if (selectedAssetType === 'amazonOption'){
+      STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/kit/basic/create/aws`;
+      Object.assign(data, {
+        asset_type: "aws",
+        storage_url: document.getElementById('bucketURL').value,
+        bucket_name: document.getElementById('bucketName').value,
+        storage_region: document.getElementById('bucketRegion').value,
+        object_path: document.getElementById('objectPath').value,
+        storage_username: document.getElementById('userName').value,
+        storage_password: document.getElementById('userPassword').value
+      });
+    }
+
+    try {
+      // Use EDGE_CONNECTOR from config.js
+      const response = await fetch(STATUS_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Request failed: ${response.status} - ${errorText}`);
+      }
+
+      const result = await response.json();
+      alert('Asset created successfully!');
+      } catch (error) {
+        alert(`Error sending HTTP request: ${error.message}`);
+        console.error(error);
+      }
+});
+</script>
+  

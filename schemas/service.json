@@ -1,0 +1,16 @@
+{
+    "mandatory":{
+        "category": "service",
+        "model": "service",
+        "usedModels":"List[xsd:anyUri]",
+        "serviceTypeMain":"skos:concept",
+        "serviceType":"skos:concept",
+        "endpointURL":"xsd:anyUri"
+    },
+    "optional":{
+        "input":"schema:quantitativeValue",
+        "output":"schema:quantitativeValue",
+        "endpointDescription":"xsd:text",
+        "landingPage":"xsd:anyUri"
+    }
+}
