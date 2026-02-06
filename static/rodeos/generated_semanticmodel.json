@@ -1,0 +1,58 @@
+{
+  "@type": "dcat:Resource",
+  "properties": {
+    "dcterms:title": "SCHUNK EGK Small Component Gripper",
+    "dcterms:type": "http://purl.org/dc/dcmitype/PhysicalObject",
+    "dcterms:publisher": "SCHUNK",
+    "dcterms:license": "https://spdx.org/licenses/CC-BY-4.0.html",
+    "dcterms:identifier": "SCHUNK-EGK-SERIES",
+    "dcterms:description": "The EGK is an intelligent, electric 2-finger parallel gripper designed for handling small components. It features adjustable gripping force from 50 N to 300 N, integrated control electronics, and support for multiple industrial protocols like PROFINET and IO-Link. It is suitable for electronics manufacturing and laboratory automation.",
+    "dcat:version": "1.0",
+    "dcat:keyword": [
+      "2-finger parallel gripper",
+      "mechatronic EOAT",
+      "electric gripper",
+      "small component handling",
+      "SoftGrip",
+      "industrial automation"
+    ],
+    "dcat:contactPoint": "https://schunk.com/contact",
+    "rodeos:coreType": "Component"
+  },
+  "child": {
+    "@type": "rodeos:Component",
+    "properties": {
+      "rodeos:componentType": "hardwareComponent",
+      "rodeos:modelParameters": "{'manufacturer': 'SCHUNK', 'modelName': 'EGK', 'mass': '0.58 kg - 1.63 kg', 'grippingForce': '50 N - 300 N', 'strokePerJaw': '26.5 mm - 51.5 mm', 'driveSystem': 'Brushless flat motor', 'connectivity': ['PROFINET', 'EtherCAT', 'EtherNet/IP', 'Modbus RTU', 'IO-Link'], 'protectionClass': 'IP level not specified, suitable for clean to slightly contaminated environments'}",
+      "rodeos:framework": ""
+    },
+    "child": {
+      "@type": "rodeos:hardwareComponent",
+      "properties": {
+        "rodeos:manufacturer": "SCHUNK",
+        "rodeos:hardwareAssetType": "http://uri.schunk.com/asset-types/gripper"
+      },
+      "child": {
+        "@type": "rodeos:tooling",
+        "properties": {
+          "rodeos:supplyVoltage": "5",
+          "rodeos:interfaceProtocol": "PROFINET, EtherCAT, EtherNet/IP, Modbus RTU, IO-Link",
+          "rodeos:manufacturer": "SCHUNK",
+          "rodeos:toolWeight": "1.63",
+          "rodeos:toolMaterial": "Anodized aluminum, Stainless steel"
+        },
+        "child": {
+          "@type": "rodeos:gripperTool",
+          "properties": {
+            "rodeos:gripperType": "MechanicalParallel",
+            "rodeos:aasSubmodel": "https://raw.githubusercontent.com/admin-shell-io/submodel-templates/refs/heads/main/published/Technical_Data/2/0/IDTA%2002003_Sample_TechnicalData.json",
+            "rodeos:gripForceMax": "300.0",
+            "rodeos:strokePerFinger": "51.5",
+            "rodeos:objectSizeRange": "",
+            "rodeos:interfaceMechanical": ""
+          }
+        }
+      }
+    }
+  }
+}
