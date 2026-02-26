@@ -162,15 +162,14 @@ async function loadSearchResults(query="") {
                 const payload = {
                     provider_id: provider_id,
                     connector_url: originator,
-                    asset_id: asset_id,
-                    policy: policy[0],
-                    asset_type: asset_type,
+                    kit_name: asset_id,
+                    overwrite: true
                 };
                 if (asset.method === "POST") {
                     console.log("TODO: request body must be provided")
                     payload.payload = asset.request_body;
                 }
-                const resp = await fetch(`${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/http/transfer`, {
+                const resp = await fetch(`${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/download/basickit`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

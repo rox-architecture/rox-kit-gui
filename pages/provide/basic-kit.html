@@ -585,47 +585,58 @@ const treeData = [
     const semantic_model = { ...semantic_model1, ...semantic_model2 };
     const selectedOfferType = document.querySelector('input[name="submissionType"]:checked').value;
 
-    const data = {
-      // General Information
+    const general_info = {
       kit_name: document.getElementById('kitName').value,
       kit_type: "basic",
-      name: document.getElementById('kitName').value,
       version: document.getElementById('version').value,
       description: document.getElementById('description').value,
+      offerType: selectedOfferType,
       tag: document.getElementById('tag').value || null,
       business: document.getElementById('businessValue').value || null,
       vision: document.getElementById('vision').value || null,
       license: document.getElementById('license').value || null,
       contact: document.getElementById('contact').value || null,
-      offerType: selectedOfferType,
+    }
     
+    const additional_info = {
+      icon: document.getElementById('imageEncoded').value || null,
+      execution_commands: document.getElementById('postProcessing').value || null,
+      default_file_name: document.getElementById('fileName').value || null
+    }
+
+    const data = {    
+      // general information about KIT
+      general_info: general_info,
+
       // Semantic Model
       semantic_model: semantic_model,
 
-      // asset representative image
-      icon: document.getElementById('imageEncoded').value || null,
-      default_file_name: document.getElementById('fileName').value || null,
-      postprocessing_cmd: document.getElementById('postProcessing').value || null
+      // additional information
+      additional_info: additional_info,
     };
 
     const selectedAssetType = document.querySelector('input[name="gridRadiosAsset"]:checked')?.value;
 
     let STATUS_URL;
     if (selectedAssetType === 'httpOption') {
-      STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/kit/basic/create/http`;
+      STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/create/basickit`;
 
       const request_headers = document.getElementById('httpRequestHeader').value;  // debugging purpose
       console.log(request_headers)
 
-      Object.assign(data, {
-        url: document.getElementById('httpUrl').value,
+      const access_info = {
         asset_type: "http",
+        url: document.getElementById('httpUrl').value,
         method: document.getElementById('httpMethod').value,
-        header: document.getElementById('httpRequestHeader').value,
         request_type: document.getElementById('httpRequestType').value,
-        request_body: document.getElementById('httpRequestBody').value ? JSON.parse(document.getElementById('httpRequestBody').value) : null
+        request_body: document.getElementById('httpRequestBody').value ? JSON.parse(document.getElementById('httpRequestBody').value) : null,
+        header: null
+      }
+      Object.assign(data, {
+        access_info: access_info
       });
-    } 
+    }
+    
     else if (selectedAssetType === 'amazonOption'){
       STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/kit/basic/create/aws`;
       Object.assign(data, {
