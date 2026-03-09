@@ -1,0 +1,126 @@
+import React, { useState, useEffect } from 'react';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../css/adminlte.css'
+import '../../css/custom.css'
+import '../../App.css'
+import EDGE_CONNECTOR from "../../config.js"
+
+const ShowPolicies = () => {
+  useEffect(() => {
+    loadPolicies();
+  }, []);
+
+  function attachPolicyContainerEvents(container) {
+  if (container.dataset.listenerAttached === "true") return;
+
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-lte-toggle='card-collapse']");
+    if (!btn) return;
+
+    const card = btn.closest(".card");
+    if (!card) return;
+
+    card.classList.toggle("collapsed-card");
+  });
+
+  container.dataset.listenerAttached = "true";
+}
+
+async function loadPolicies(page = 0, limit = 100) {
+  try {
+    const response = await fetch(`${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/policies?page=${page}&limit=${limit}`);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const policies = await response.json();
+
+    const container = document.getElementById("policy-container");
+    if (page === 0) container.innerHTML = ""; // prevents duplicates
+    attachPolicyContainerEvents(container)
+     
+    policies.forEach((policy) => {
+      const createdAt = new Date(policy.createdAt).toLocaleString();
+      const policyId = policy["@id"] || "Unknown ID";
+      const policyBody = policy.policy ? JSON.stringify(policy.policy, null, 2) : "No policy body available";
+
+      // Column wrapper for grid layout
+      const col = document.createElement("div");
+      col.className = "col-md-3 mb-4"; // add margin-bottom for spacing
+
+      // Card
+      const card = document.createElement("div");
+      card.className = "card card-primary collapsed-card";
+
+      // Card header
+      const cardHeader = document.createElement("div");
+      cardHeader.className = "card-header";
+      cardHeader.innerHTML = `
+        <h3 class="card-title">${policyId}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+            <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+            <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+          </button>
+        </div>
+      `;
+      card.appendChild(cardHeader);
+
+      // Card body
+      const cardBody = document.createElement("div");
+      cardBody.className = "card-body";
+
+      const createdAtP = document.createElement("p");
+      createdAtP.innerHTML = `<strong>Created At:</strong> ${createdAt}`;
+      cardBody.appendChild(createdAtP);
+
+      const pre = document.createElement("pre");
+      pre.className = "policy-body";
+      pre.style.cssText = "background:#f8f9fa; padding:0.5rem; border-radius:0.25rem; overflow-x:auto;";
+      pre.textContent = policyBody; // safely display JSON
+      cardBody.appendChild(pre);
+
+      card.appendChild(cardBody);
+
+      // Append card to column, column to container
+      col.appendChild(card);
+      container.appendChild(col);
+    });
+
+    // Optional: call LTE.init() if needed
+    if (window.LTE) {
+      window.LTE.init();
+    }
+
+    } catch (err) {
+      console.error("Error loading policies:", err);
+      alert("Failed to load policies: " + err.message);
+    }
+  }
+
+  return (
+    <div>
+      <div className="app-content-header">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-sm-6">
+                <h3 className="mb-0">Show Policies</h3>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div className="app-content">
+          <div className="container-fluid">
+              <div className="row g-4" id="policy-container">
+              </div>
+
+              <div className="text-center my-3">
+                  <button id="loadMoreBtn" className="btn btn-danger">Show More</button>
+              </div>
+          </div>
+      </div>
+    </div>
+  );
+};
+
+export default ShowPolicies;

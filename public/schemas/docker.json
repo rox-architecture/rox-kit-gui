@@ -1,0 +1,14 @@
+{
+
+    "mandatory":{
+        "category": "docker",
+        "model": "docker",
+        "dockerType":"Dockerfile, docker-compose"
+    },
+    "optional":{
+        "depencencies":"xsd:text",
+        "operatingSystem":"xsd:text",
+        "dockerVersion":"xsd:text",
+        "kubernetesDeployment":"true|false"
+    }
+}
