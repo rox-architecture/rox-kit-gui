@@ -61,28 +61,31 @@ const Canvas = () => {
   };
 
   // "Execute" action
-  const handleExecute = () => {
-    const payload = buildSequencePayload();
-    const STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/run/compositekit`;
-    console.log("Execute payload:", payload);
-    alert(JSON.stringify(payload, null, 2));
+  const handleExecute = async () => {
+    try {
+      const payload = buildSequencePayload();
+      const STATUS_URL = `${EDGE_CONNECTOR.ADDRESS}:${EDGE_CONNECTOR.PORT}/run/compositekit`;
 
-    const response = fetch(STATUS_URL, {
-        method: 'POST',
+      console.log("Execute payload:", payload);
+      alert(JSON.stringify(payload, null, 2));
+
+      const response = await fetch(STATUS_URL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-    if (!response.ok) {
+      if (!response.ok) {
         throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Received JSON:", data);
+    } catch (error) {
+      console.error("Execute failed:", error);
     }
-
-    const data = response.json();
-    console.log("Received JSON:", data);
-
-    // await fetch("/your-endpoint", { method:"POST", headers:{...}, body: JSON.stringify(payload) })
   };
 
   return (

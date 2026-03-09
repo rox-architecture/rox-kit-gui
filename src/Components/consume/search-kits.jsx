@@ -56,10 +56,12 @@ const SearchKits = () => {
 
           const provider_id = catalog["dspace:participantId"];
           const originator = catalog["originator"];
-      
+          
           datasets.forEach(asset => {
               if (!("kit_type" in asset)) return;
-
+              asset.originator = originator;
+              asset.provider_id = provider_id;
+              
               const icon = asset.icon ? `<img src="${asset.icon}" alt="Icon" style="width:100%; height:100%; object-fit:cover;">`
                               : `<i class="bi bi-box" style="font-size: 40px; display: inline-block; width: 60px; height: 60px; line-height: 60px; text-align: center;"></i>`;
               const kit_name = asset["kit_name"];
