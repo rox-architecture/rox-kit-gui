@@ -715,13 +715,26 @@ return (
                     <div className="row mb-3">
                       <label htmlFor="filename" className="col-sm-3 col-form-label">Default File Name</label>
                       <div className="col-sm-9">
-                        <input type="text" className="form-control" id="filename" />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="filename"
+                          value={fileName}
+                          onChange={(e) => setFileName(e.target.value)}
+                        />
                       </div>
                     </div>
                     <div className="row mb-3">
                       <label htmlFor="postProcessingCmd" className="col-sm-12 col-form-label">Post Processing</label>
                       <div className="col-sm-12">
-                        <textarea className="form-control" rows="4" id="postProcessingCmd" placeholder="This command will be executed immediately after saving the Basic KIT in the memory. Use it for, e.g., unzipping files. Provide the default file name so that this command can assume the file name"></textarea>
+                        <textarea
+                          className="form-control"
+                          rows="4"
+                          id="postProcessingCmd"
+                          placeholder="This command will be executed immediately after saving the Basic KIT in the memory. Use it for, e.g., unzipping files. Provide the default file name so that this command can assume the file name"
+                          value={postProcessing}
+                          onChange={(e) => setPostProcessing(e.target.value)}
+                        ></textarea>
                       </div>
                     </div>
                     <div className="card-footer">
