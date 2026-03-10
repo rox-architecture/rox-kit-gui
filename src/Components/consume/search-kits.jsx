@@ -159,7 +159,7 @@ const SearchKits = () => {
                       alert("Failed: ");
                       return;
                   }
-                  alert(`Response: ${JSON.stringify(resp)}`);
+                  alert(`Download Completed`);
               });
 
               sendBtn.addEventListener("click", async () => {
