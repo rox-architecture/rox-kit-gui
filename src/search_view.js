@@ -73,10 +73,10 @@ async function loadSearchResults(query="") {
 
     catalogs.forEach(catalog => {
         // extract data
-        const datasets = catalog["dcat:dataset"];
-        if (!datasets || datasets.length === 0) { // if no offer in the catalog
-            return; 
-        }
+        let datasets = catalog["dcat:dataset"];
+        if (!datasets) return;
+        if (!Array.isArray(datasets)) datasets = [datasets];  // normalize single object to array
+        if (datasets.length === 0) return;
 
         const provider_id = catalog["dspace:participantId"];
         const originator = catalog["originator"];
